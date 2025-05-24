@@ -1,7 +1,7 @@
 <x-auth-layout>
     <h2>Login</h2>
 
-    <form method="POST" action="{{ route('login.enter') }}">
+    <form method="POST" action="{{ route('login.submit') }}">
     @csrf
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
@@ -14,6 +14,6 @@
       </div>
 
       <button type="submit" class="btn btn-primary w-100">Login</button>
-      <br><br>you don't have an account? <a style="text-decoration:none;" href="{{route('signup')}}">signup</a>
+      <br><br>you don't have an account? <a style="text-decoration:none;" href="{{route('register')}}">signup</a>
     </form>
 </x-auth-layout>

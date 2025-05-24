@@ -21,3 +21,10 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+# VS Code & Visual Studio
+.vs/
+*.vsidx
+*.sqlite
+*.wsuo
+

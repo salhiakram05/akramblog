@@ -1,7 +1,7 @@
 <x-auth-layout>
     <h2>sign up</h2>
     
-    <form method="POST" action="{{route('save')}}">
+    <form method="POST" action="{{route('register.submit')}}">
     @csrf
       <div class="mb-3">
         <label for="name" class="form-label">Full Name</label>

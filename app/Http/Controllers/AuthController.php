@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function login(){
+    public function showLoginForm(){
         return view('auth.login');
     }
-    public function enter(Request $request){
+    public function login(Request $request){
         
         $request->validate([
             'email' => ['required', 'string','email'] ,
@@ -19,7 +19,7 @@ class AuthController extends Controller
         ]);
         $email = $request->email;
         $password = $request->password;
-        $login_check = auth::attempt(['email' => $email , 'password' => $password]) ;
+        $login_check = Auth::attempt(['email' => $email , 'password' => $password]) ;
         if ($login_check) {
             return to_route('index');
         }
@@ -29,10 +29,10 @@ class AuthController extends Controller
 
     }
 
-    public function signup(){
+    public function showRegisterForm(){
         return view('auth.signup');
     }
-    public function save(Request $request){
+    public function register(Request $request){
         $request-> validate([
             'name' => ['required' , 'string','max:255'],
             'email' => ['required' , 'string','email','max:255','unique:users'],
@@ -42,10 +42,10 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => hash::make($request->password),
+            'password' => Hash::make($request->password),
             
         ]);
-        auth::login($user);
+        Auth::login($user);
         return to_route('index');
     }
 

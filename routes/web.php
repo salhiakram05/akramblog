@@ -46,11 +46,11 @@ Route::get('/search' ,[SearchController::class,'show'])->name('searched.show');
 // AuthController
 
 Route::middleware(['guest'])->group(function () {
-    route::get('/login' , [AuthController::class , 'login']) -> name('login');
-    route::post('/enter' , [AuthController::class, 'enter']) -> name('login.enter');
+    route::get('/login' , [AuthController::class , 'showLoginForm']) -> name('login');
+    route::post('/login' , [AuthController::class, 'login']) -> name('login.submit');
 
-    route::get('/signup' , [AuthController::class , 'signup']) -> name('signup');
-    route::post('/save' , [AuthController::class, 'save']) -> name('save');
+    route::get('/register' , [AuthController::class , 'showRegisterForm']) -> name('register');
+    route::post('/register' , [AuthController::class, 'register']) -> name('register.submit');
 });
 
 route::post('/logout' , [AuthController::class , 'logout']) -> name('logout');

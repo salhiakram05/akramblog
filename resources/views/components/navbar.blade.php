@@ -16,7 +16,7 @@
                     </form>
                 @else
                 <a class="nav-link active" href="{{ route('login') }}">Log in <i class="bi bi-box-arrow-in-right"></i></a>
-                <a class="nav-link active" href="{{ route('signup') }}">Create Account <i class="bi bi-check-square"></i></a>
+                <a class="nav-link active" href="{{ route('register') }}">Create Account <i class="bi bi-check-square"></i></a>
 
                 @endauth
             </div>
