@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\models\post;
-use App\models\like;
-use App\models\user;
+use App\Models\Post;
+use App\Models\Like;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
@@ -56,8 +56,8 @@ class PostsController extends Controller
     }
 
     public function edit($id){
-        $post = post::find($id);
-        $users = user::all();
+        $post = Post::find($id);
+        $users = User::all();
         return view('posts.edit', ['post' => $post , 'users' => $users] );
     }
     public function update($id){

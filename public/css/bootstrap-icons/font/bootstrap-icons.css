@@ -664,7 +664,7 @@ url("./fonts/bootstrap-icons.woff?e34853135f9e39acf64315236852cd5a") format("wof
 .bi-file-earmark-plus-fill::before { content: "\f37c"; }
 .bi-file-earmark-plus::before { content: "\f37d"; }
 .bi-file-earmark-post-fill::before { content: "\f37e"; }
-.bi-file-earmark-post::before { content: "\f37f"; }
+.bi-file-earmark-Post::before { content: "\f37f"; }
 .bi-file-earmark-ppt-fill::before { content: "\f380"; }
 .bi-file-earmark-ppt::before { content: "\f381"; }
 .bi-file-earmark-richtext-fill::before { content: "\f382"; }
@@ -710,7 +710,7 @@ url("./fonts/bootstrap-icons.woff?e34853135f9e39acf64315236852cd5a") format("wof
 .bi-file-plus-fill::before { content: "\f3aa"; }
 .bi-file-plus::before { content: "\f3ab"; }
 .bi-file-post-fill::before { content: "\f3ac"; }
-.bi-file-post::before { content: "\f3ad"; }
+.bi-file-Post::before { content: "\f3ad"; }
 .bi-file-ppt-fill::before { content: "\f3ae"; }
 .bi-file-ppt::before { content: "\f3af"; }
 .bi-file-richtext-fill::before { content: "\f3b0"; }
@@ -1123,7 +1123,7 @@ url("./fonts/bootstrap-icons.woff?e34853135f9e39acf64315236852cd5a") format("wof
 .bi-signpost-fill::before { content: "\f547"; }
 .bi-signpost-split-fill::before { content: "\f548"; }
 .bi-signpost-split::before { content: "\f549"; }
-.bi-signpost::before { content: "\f54a"; }
+.bi-signPost::before { content: "\f54a"; }
 .bi-sim-fill::before { content: "\f54b"; }
 .bi-sim::before { content: "\f54c"; }
 .bi-skip-backward-btn-fill::before { content: "\f54d"; }
