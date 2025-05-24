@@ -11,9 +11,9 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
     public function comments(){
-        return $this->hasMany(comment::class)->latest();
+        return $this->hasMany(Comment::class)->latest();
     }
     public function likes(){
-        return $this->hasMany(like::class) ;
+        return $this->hasMany(Like::class) ;
     }
 }
