@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Like;
 use App\Models\User;
+use App\Models\Tag;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,7 +23,7 @@ class PostsController extends Controller
         return view('posts.dashboard',['posts' => $posts]);
     }
 
-    public function show(post $post){
+    public function show(Post $post){
         return view('posts.show' , ['post' => $post ]) ;
     }
 
@@ -35,24 +37,36 @@ class PostsController extends Controller
         $request->validate([
             'title' => ['required' , 'min:3'],
             'post' => ['required' , 'min:3'],
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048']
-
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'tags' => ['nullable','string']
         ]);
         $title = $request->title;
         $description = $request->post;
         $user_id = auth()->id();
+        
         $image = $request->file('image');
         $customName = $user_id . '.' . $image->getClientOriginalExtension();
-        $image->storeAs('images', $customName, 'public');
+        $image->storeAs('images', $customName);
 
         // make this data into our database
-        Post::create([
+        $post = Post::create([
            'title' => $title,
            'post' =>  $description,
            'user_id' => $user_id,
            'path' => 'images/' . $customName
         ]);
-        return to_route('posts.index');
+
+        // tags processing
+        $tags = explode(',', $request->tags) ;
+        $tag_Ids = [];
+        foreach ($tags as $tag){
+            $tag = trim($tag);
+            if ( empty($tag) ) continue;
+            $tag = Tag::firstOrCreate(['name' => $tag]);
+            $tag_Ids[] = $tag->id ;
+        }
+        $post->tags()->sync($tag_Ids);
+        return to_route('posts.show' , $post->id);
     }
 
     public function edit($id){
@@ -60,21 +74,34 @@ class PostsController extends Controller
         $users = User::all();
         return view('posts.edit', ['post' => $post , 'users' => $users] );
     }
-    public function update($id){
-        $title = request()->title;
-        $post = request()->post;
-        $user_id = auth()->id();
-        $image = request()->file('image');
+    public function update(Post $post , Request $request){
+
+        $title = $request->title;
+        $postContent = $request->post;
+        $user_id = $post->user_id;
+        $image = $request->file('image');
         $customName = $user_id . '.' . $image->getClientOriginalExtension();
         $image->storeAs('images', $customName, 'public');
-        Post::find($id)->update(
+
+        $post->update(
             [
                 'title' => $title,
-                'post' => $post,
+                'post' => $postContent,
                 'path' => 'images/' . $customName
             ]
         );
-        return to_route('posts.show' , $id);
+        // tags updating
+        
+        $tags = explode(',', request()->tags) ;
+        $tag_Ids = [];
+        foreach ($tags as $tag){
+            $tag = trim($tag);
+            if ( empty($tag) ) continue;
+            $tag = Tag::firstOrCreate(['name' => $tag]);
+            $tag_Ids[] = $tag->id ;
+        }
+        $post->tags()->sync($tag_Ids);
+        return to_route('posts.show' , $post->id);
     }
 
     public function destroy($id){

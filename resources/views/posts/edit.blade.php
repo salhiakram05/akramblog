@@ -17,7 +17,10 @@ edit post
   <label for="exampleFormControlTextarea1" class="form-label">Post</label>
   <textarea name="post" class="form-control" id="exampleFormControlTextarea1" rows="3">{{$post->post}}</textarea>
 </div>
-
+<div class="mt-5 mb-3">
+  <label for="exampleFormControlInput1" class="form-label">tags</label>
+  <input name="tags" type="text" class="form-control" id="exampleFormControlInput1" placeholder="tags of the post" value="@foreach ($post->tags as $tag) {{ $tag->name }}, @endforeach">
+</div>
 <input class="form-control" id="inputGroupFile02"  type="file" name="image">
 
 <button type="submit" class="btn btn-primary mt-3">Edit</button>

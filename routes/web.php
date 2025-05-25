@@ -6,6 +6,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagController;
 
 
 
@@ -34,7 +35,8 @@ route::get('/posts/{post}',[PostsController::class,'show']) -> name('posts.show'
 route::post('/posts/{post}/like' , [PostsController::class, 'like']) -> name('posts.like') ;
 
 
-
+// Tag Controller
+Route::get('/tags/{tag}' , [TagController::class , 'show']) -> name('tags.show');
 
 //CommentsController
 Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');

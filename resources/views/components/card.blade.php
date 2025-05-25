@@ -5,11 +5,14 @@
      class="rounded-circle me-2" width="35" height="35" alt="{{ $post->user->name }}">
    <b>{{ $post->user->name }}</b>
   </div>
-    <h3 class="card-title  mb-3"><a href="{{route('posts.show' , $post->id )}}"> {{$post->title}} </a></h3>
-    <p style="font-size:18px" class="card-text mb-2">{{substr($post->post,0,150)}}</p>
-    <div class="mb-3" style="color:#5a5a5a;font-size:16px">at {{$post->created_at->format("d-m-Y h:i")}}  </div>
+    <h3 class="card-title  mb-2"><a href="{{route('posts.show' , $post->id )}}"> {{$post->title}} </a></h3>
+    <x-tags :tags="$post->tags" />
+    @if ($post->path)
+        <img width="80%" height="auto" src="{{ asset('storage/' . $post->path) }}" class="rounded d-block mt-3 mb-3" alt="صورة">
+    @endif
 
     
+   <div class="mb-3" style="color:#5a5a5a;font-size:16px">at {{$post->created_at->format("d-m-Y h:i")}}  </div>
 
    <x-like :post="$post" />
 

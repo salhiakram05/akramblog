@@ -4,7 +4,7 @@ show page
 @endsection
 @section("content")
 
-  <x-alert-errors />
+<x-alert-errors />
 
 
 <div class="card mt-5 p-3 ">
@@ -16,13 +16,15 @@ show page
    <b>{{ $post->user->name }}</b>
   </div>
     <h3 class="card-title  mb-2">{{$post->title}}</h3>
+    <x-tags :tags="$post->tags" />
+
     @if ($post->path)
-        <img width="80%" height="auto" src="{{ asset('storage/' . $post->path) }}" class="rounded d-block mt-3 mb-3" alt="صورة">
+        <img width="80%" height="auto" src="{{ asset('storage/' . $post->path) }}" class="rounded d-block mt-3 mb-3" >
     @endif
-    <p style="font-size:115%;text-align: justify;" class="card-text  mb-2">{{$post->post}}</p>
+    <p style="font-size:115%;text-align: justify;" class="card-text  mb-3">{{$post->post}}</p>
+
 
     <div class="mb-3" style="color:#5a5a5a;font-size:16px">at {{$post->created_at}}  </div>
-
 
 <x-like :post="$post" />
 
