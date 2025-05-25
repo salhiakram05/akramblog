@@ -37,16 +37,16 @@ class PostsController extends Controller
         $request->validate([
             'title' => ['required' , 'min:3'],
             'post' => ['required' , 'min:3'],
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:10000'],
             'tags' => ['nullable','string']
         ]);
         $title = $request->title;
         $description = $request->post;
         $user_id = auth()->id();
-        
         $image = $request->file('image');
-        $customName = $user_id . '.' . $image->getClientOriginalExtension();
-        $image->storeAs('images', $customName);
+        $customName =  time()  . '.' . $image->getClientOriginalExtension();
+        
+        $image->storeAs('images', $customName,'public');
 
         // make this data into our database
         $post = Post::create([
