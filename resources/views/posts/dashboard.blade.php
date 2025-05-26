@@ -17,7 +17,7 @@ index page
     </tr>
   </thead>
   <tbody>
-    @foreach ($posts as $post)
+    @forelse ($posts as $post)
     <tr>
       <th scope="row">{{$post->id}}</th>
       <td>{{$post->title}}</td>
@@ -32,9 +32,9 @@ index page
         </form>
       </td>
     </tr>
-   
-    
-    @endforeach
+    @empty
+    <th> there is no posts yet </th>
+    @endforelse
     </tbody>
 
  
