@@ -80,7 +80,7 @@ class PostsController extends Controller
         $postContent = $request->post;
         $user_id = $post->user_id;
         $image = $request->file('image');
-        $customName = $user_id . '.' . $image->getClientOriginalExtension();
+        $customName = time() . '.' . $image->getClientOriginalExtension();
         $image->storeAs('images', $customName, 'public');
 
         $post->update(
@@ -92,7 +92,7 @@ class PostsController extends Controller
         );
         // tags updating
         
-        $tags = explode(',', request()->tags) ;
+        $tags = explode(',', $request->tags) ;
         $tag_Ids = [];
         foreach ($tags as $tag){
             $tag = trim($tag);

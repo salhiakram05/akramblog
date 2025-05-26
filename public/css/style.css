@@ -15,7 +15,7 @@ a {
     transition: color 0.5s !important;
 }
 
-nav a:hover, .card a:hover, .card button:hover {
+nav a:hover, .card a:hover, .card button:hover, .nav-link:hover {
     color: #0056b3 !important;
 }
 
