@@ -37,7 +37,7 @@ class PostsController extends Controller
         $request->validate([
             'title' => ['required' , 'min:3'],
             'post' => ['required' , 'min:3'],
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:10000'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'tags' => ['nullable','string']
         ]);
         $title = $request->title;

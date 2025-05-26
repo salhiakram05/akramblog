@@ -21,7 +21,7 @@ edit post
   <label for="exampleFormControlInput1" class="form-label">tags</label>
   <input name="tags" type="text" class="form-control" id="exampleFormControlInput1" placeholder="tags of the post" value="@foreach ($post->tags as $tag) {{ $tag->name }}, @endforeach">
 </div>
-<input class="form-control" id="inputGroupFile02"  type="file" name="image">
+<input class="form-control" id="inputGroupFile02"  type="file" name="image" required>
 
 <button type="submit" class="btn btn-primary mt-3">Edit</button>
 </form>
