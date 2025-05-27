@@ -3,14 +3,14 @@
     "",
     "\\app",
     "\\app\\Http",
-    "\\app\\Http\\Controllers",
+    "\\app\\Models",
+    "\\database\\factories",
+    "\\database\\seeders",
     "\\public",
-    "\\public\\js",
-    "\\resources",
-    "\\resources\\views",
-    "\\resources\\views\\auth",
-    "\\resources\\views\\components"
+    "\\public\\css",
+    "\\resources\\views\\components",
+    "\\resources\\views\\posts"
   ],
-  "SelectedNode": "\\app\\Models\\post.php",
+  "SelectedNode": "\\app\\Http\\Controllers\\TagController.php",
   "PreviewInSolutionExplorer": false
 }

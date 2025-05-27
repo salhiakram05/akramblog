@@ -45,8 +45,11 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             
         ]);
+        $user->sendEmailVerificationNotification();
         Auth::login($user);
-        return to_route('index');
+        return to_route('verification.notice');
+
+        
     }
 
     public function logout(Request $request){

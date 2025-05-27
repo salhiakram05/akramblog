@@ -7,32 +7,52 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\Auth\EmailVerificationController;
 
 
 
 
-//PostsController
+//PostsController CRUD for only users
+
+Route::middleware(['auth' , 'verified']) -> controller(PostsController::class) -> name('posts.') -> group( function () {
+
+    Route::get('/posts', 'index') -> name('index');
+
+    Route::get('/posts/create', 'create' ) -> name('create');
+
+    Route::post('/posts' ,  'store' ) -> name('store') ;
+
+    Route::get('/posts/{post}/edit' , 'edit' ) -> name('edit');
+
+    Route::put('/posts/{post}', 'update' ) -> name('update');
+
+    Route::delete('/posts/{post}' , 'destroy' ) -> name('destroy');
+
+});
+
+// PostsController for all visitors ( index , show , like )
+
 Route::get('/', [PostsController::class,'index']) -> name('index');
 
-Route::middleware(['auth'])->group(function () {
-    route::get('/posts', [PostsController::class,'index']) -> name('posts.index');
+Route::get('/posts/{post}',[PostsController::class,'show']) -> name('posts.show');
 
-    route::get('/posts/create', [PostsController::class ,'create']) -> name('posts.create');
-
-    route::post('/posts' , [PostsController::class , 'store']) -> name('posts.store') ;
+Route::post('/posts/{post}/like' , [PostsController::class, 'like']) -> name('posts.like') ;
 
 
-    route::get('/posts/{post}/edit' , [PostsController::class,'edit']) -> name('posts.edit');
 
-    route::put('/posts/{post}',[PostsController::class,'update']) -> name('posts.update');
+// profilecontroller
 
-    route::delete('/posts/{post}' , [PostsController::class , 'destroy']) -> name('posts.destroy');
+Route::middleware(['auth' , 'verified']) -> group ( function () {
+
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::post('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
 
 });
 
 
-route::get('/posts/{post}',[PostsController::class,'show']) -> name('posts.show');
-route::post('/posts/{post}/like' , [PostsController::class, 'like']) -> name('posts.like') ;
 
 
 // Tag Controller
@@ -47,22 +67,29 @@ Route::get('/search' ,[SearchController::class,'show'])->name('searched.show');
 
 // AuthController
 
-Route::middleware(['guest'])->group(function () {
-    route::get('/login' , [AuthController::class , 'showLoginForm']) -> name('login');
-    route::post('/login' , [AuthController::class, 'login']) -> name('login.submit');
+Route::middleware('guest')->group( function () {
 
-    route::get('/register' , [AuthController::class , 'showRegisterForm']) -> name('register');
-    route::post('/register' , [AuthController::class, 'register']) -> name('register.submit');
+    Route::get('/login' , [AuthController::class , 'showLoginForm']) -> name('login');
+
+    Route::post('/login' , [AuthController::class, 'login']) -> name('login.submit');
+
+    Route::get('/register' , [AuthController::class , 'showRegisterForm']) -> name('register');
+
+    Route::post('/register' , [AuthController::class, 'register']) -> name('register.submit');
+
 });
 
-route::post('/logout' , [AuthController::class , 'logout']) -> name('logout');
+Route::post('/logout' , [AuthController::class , 'logout']) -> middleware('auth') -> name('logout');
 
 
-// profilecontroller
+// email verification
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
-    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::post('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
+Route::middleware('auth')->controller(EmailVerificationController::class)->name('verification.')->group( function(){
+
+    Route::get('/email/verify', 'showVerificationNotice') -> name('notice');
+
+    Route::get('/email/verify/{id}/{hash}', 'verify' ) -> middleware('signed') -> name('verify');
+
+    Route::post('/email/verification-notification', 'resend' )-> middleware('throttle:6,1') -> name('send');
 
 });

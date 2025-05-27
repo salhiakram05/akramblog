@@ -16,7 +16,7 @@ class AuthUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!auth::check()){
+        if(!Auth::check()){
             return to_route('index');
         }
         return $next($request);

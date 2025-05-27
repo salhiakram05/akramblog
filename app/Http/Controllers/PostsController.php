@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 class PostsController extends Controller
 {
     public function index(){
-        if(route::currentRouteName() == 'index'){
+        if(Route::currentRouteName() == 'index'){
             $posts = Post::latest()->get();
             return view('index',['posts' => $posts]);
         }
@@ -117,7 +117,7 @@ class PostsController extends Controller
         }
         $like = $post->likes()->where('user_id', $user->id)->first() ;
         if (!$like) {
-            like::create([
+            Like::create([
                 'user_id' => $user->id ,
                 'post_id' => $post->id
             ]);
