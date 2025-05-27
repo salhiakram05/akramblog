@@ -22,7 +22,7 @@ Route::middleware(['auth' , 'verified']) -> controller(PostsController::class) -
 
     Route::post('/posts' ,  'store' ) -> name('store') ;
 
-    Route::get('/posts/{post}/edit' , 'edit' ) -> name('edit');
+    Route::get('/posts/{post}/edit' , 'edit' ) -> middleware('can:update,post') -> name('edit');
 
     Route::put('/posts/{post}', 'update' ) -> name('update');
 

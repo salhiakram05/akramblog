@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 
 class PostsController extends Controller
 {
+
+
     public function index(){
         if(Route::currentRouteName() == 'index'){
             $posts = Post::latest()->get();
@@ -69,13 +71,10 @@ class PostsController extends Controller
         return to_route('posts.show' , $post->id);
     }
 
-    public function edit($id){
-        $post = Post::find($id);
-        $users = User::all();
-        return view('posts.edit', ['post' => $post , 'users' => $users] );
+    public function edit(Post $post){
+        return view('posts.edit', ['post' => $post ] );
     }
     public function update(Post $post , Request $request){
-
         $title = $request->title;
         $postContent = $request->post;
         $user_id = $post->user_id;
