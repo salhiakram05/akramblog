@@ -8,7 +8,7 @@
             <div class="navbar-nav">
                 @auth
                    <a class="nav-link active" href="{{route('profile.show')}}">profile <i class="bi bi-person"></i></a>
-                   <a class="nav-link active" href="{{route('posts.index')}}">posts <i class="bi bi-stickies"></i></a>
+                   <a class="nav-link active" href="{{route('posts.dashboard')}}">posts <i class="bi bi-stickies"></i></a>
 
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf

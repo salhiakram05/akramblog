@@ -8,22 +8,23 @@ use App\Models\Like;
 use App\Models\User;
 use App\Models\Tag;
 
-use Illuminate\Support\Facades\Route;
-
 
 class PostsController extends Controller
 {
 
 
     public function index(){
-        if(Route::currentRouteName() == 'index'){
-            $posts = Post::latest()->get();
-            return view('index',['posts' => $posts]);
-        }
+        $posts = Post::latest()->get();
+        return view('index',['posts' => $posts]);
+    }
+
+    public function dashboard(){
+        
         $user_id = auth()->id();
         $posts = Post::where('user_id',$user_id)->get();
         return view('posts.dashboard',['posts' => $posts]);
     }
+
 
     public function show(Post $post){
         return view('posts.show' , ['post' => $post ]) ;
@@ -106,7 +107,7 @@ class PostsController extends Controller
     public function destroy($id){
         $post = Post::find($id);
         $post -> delete();
-        return to_route('posts.index');
+        return to_route('posts.dashboard');
     }
 
     public function like(Post $post){

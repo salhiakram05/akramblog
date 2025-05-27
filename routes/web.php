@@ -14,25 +14,25 @@ use App\Http\Controllers\Auth\EmailVerificationController;
 
 //PostsController CRUD for only users
 
-Route::middleware(['auth' , 'verified']) -> controller(PostsController::class) -> name('posts.') -> group( function () {
+Route::middleware(['verified']) -> prefix('posts') ->  controller(PostsController::class) -> name('posts.') -> group( function () {
 
-    Route::get('/posts', 'index') -> name('index');
+    Route::get('/', 'dashboard') -> name('dashboard');
 
-    Route::get('/posts/create', 'create' ) -> name('create');
+    Route::get('/create', 'create' ) -> name('create');
 
-    Route::post('/posts' ,  'store' ) -> name('store') ;
+    Route::post('' ,  'store' ) -> name('store') ;
 
-    Route::get('/posts/{post}/edit' , 'edit' ) -> middleware('can:update,post') -> name('edit');
+    Route::get('/{post}/edit' , 'edit' ) -> middleware('can:update,post') -> name('edit');
 
-    Route::put('/posts/{post}', 'update' ) -> name('update');
+    Route::put('/{post}', 'update' ) -> name('update');
 
-    Route::delete('/posts/{post}' , 'destroy' ) -> name('destroy');
+    Route::delete('/{post}' , 'destroy' ) -> name('destroy');
 
 });
 
 // PostsController for all visitors ( index , show , like )
 
-Route::get('/', [PostsController::class,'index']) -> name('index');
+Route::get('/', [PostsController::class,'index']) -> name('index') ;
 
 Route::get('/posts/{post}',[PostsController::class,'show']) -> name('posts.show');
 

@@ -17,7 +17,7 @@ class GuestUser
     public function handle(Request $request, Closure $next): Response
     {
         if(auth::check()){
-            return to_route('posts.index');
+            return to_route('posts.dashboard');
         }
         return $next($request);
     }
