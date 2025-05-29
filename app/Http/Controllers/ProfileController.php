@@ -25,18 +25,14 @@ class ProfileController extends Controller
     }
 
     public function updatePassword(Request $request)
-{
+    {
         $request->validate([
-            'current_password' => 'required',
+            'current_password' => 'required|current_password',
             'new_password' => 'required|string|min:8|confirmed',
         ]);
 
         $user = auth()->user();
-
-        if (!Hash::check($request->current_password, $user->password)) {
-            return back()->withErrors(['current_password' => 'password is wrong']);
-        }
-
+        auth()->logoutOtherDevices($request->current_password);
         $user->update([
             'password' => Hash::make($request->new_password),
         ]);

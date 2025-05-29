@@ -19,7 +19,6 @@ class PostsController extends Controller
     }
 
     public function dashboard(){
-        
         $user_id = auth()->id();
         $posts = Post::where('user_id',$user_id)->get();
         return view('posts.dashboard',['posts' => $posts]);
