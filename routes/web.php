@@ -93,3 +93,4 @@ Route::middleware('auth')->controller(EmailVerificationController::class)->name(
     Route::post('/email/verification-notification', 'resend' )-> middleware('throttle:6,1') -> name('send');
 
 });
+
