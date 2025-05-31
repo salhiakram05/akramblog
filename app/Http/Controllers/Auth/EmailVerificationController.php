@@ -9,13 +9,14 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 class EmailVerificationController extends Controller
 {
     public function showVerificationNotice(){
+                dd(now());
+
         return view('auth.verify-email');
     }
     public function verify(EmailVerificationRequest $request) {
         if ($request->user()->hasVerifiedEmail()) {
             return to_route('index'); 
         }
-        dd(now());
         $request->fulfill();
         return to_route('index');
     }
