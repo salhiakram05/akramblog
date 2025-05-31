@@ -5,7 +5,7 @@
      class="rounded-circle me-2" width="35" height="35" alt="{{ $post->user->name }}">
    <b>{{ $post->user->name }}</b>
   </div>
-    <h3 class="card-title  mb-2"><a href="{{route('posts.show' , $post->id )}}"> {{$post->title}} </a></h3>
+    <h4 class="card-title  mb-2"><a href="{{route('posts.show' , $post->id )}}"> {{$post->title}} </a></h4>
     <x-tags :tags="$post->tags" />
     @if ($post->path)
         <img width="80%" height="auto" src="{{ asset('storage/' . $post->path) }}" class="rounded d-block mt-3 mb-3" alt="صورة">
