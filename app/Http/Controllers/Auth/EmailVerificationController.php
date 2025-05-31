@@ -9,8 +9,6 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 class EmailVerificationController extends Controller
 {
     public function showVerificationNotice(){
-                dd(now());
-
         return view('auth.verify-email');
     }
     public function verify(EmailVerificationRequest $request) {
