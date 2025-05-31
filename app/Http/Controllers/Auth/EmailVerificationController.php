@@ -15,6 +15,7 @@ class EmailVerificationController extends Controller
         if ($request->user()->hasVerifiedEmail()) {
             return to_route('index'); 
         }
+        dd(now());
         $request->fulfill();
         return to_route('index');
     }
