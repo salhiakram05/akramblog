@@ -82,6 +82,10 @@ Route::middleware('guest')->group( function () {
 Route::post('/logout' , [AuthController::class , 'logout']) -> middleware('auth') -> name('logout');
 
 
+
+
+
+
 // email verification
 
 Route::middleware('auth')->controller(EmailVerificationController::class)->name('verification.')->group( function(){
