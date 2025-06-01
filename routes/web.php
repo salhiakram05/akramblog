@@ -108,6 +108,8 @@ Route::get('testing' , function(Request $request){
         'Laravel sees URL as' => $request->url(),
         'Request scheme' => $request->getScheme(),
         'X-Forwarded-Proto' => $request->header('X-Forwarded-Proto'),
+        'headers' => $request->headers->all()
     ];
+
 
 });
