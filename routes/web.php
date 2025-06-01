@@ -98,3 +98,15 @@ Route::middleware('auth')->controller(EmailVerificationController::class)->name(
 
 });
 
+
+
+// testing
+Route::get('testing' , function(Request $request){
+     return [
+        'Laravel sees URL as' => $request->url(),
+        'Request scheme' => $request->getScheme(),
+        'X-Forwarded-Proto' => $request->header('X-Forwarded-Proto'),
+        'Trusted headers?' => Request::HEADER_X_FORWARDED_ALL,
+    ];
+
+});
