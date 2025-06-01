@@ -10,5 +10,5 @@ class TrustProxies extends Middleware
     protected $proxies = '*';
 
    
-    protected $headers = Middleware::HEADER_X_FORWARDED_ALL;
+    protected $headers = 0x0F;
 }
