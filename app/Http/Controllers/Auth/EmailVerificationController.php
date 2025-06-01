@@ -20,7 +20,6 @@ class EmailVerificationController extends Controller
     }
 
     public function resend(Request $request){
-        dd($request->url());
         if($request->user()->hasVerifiedEmail()){
             return to_route('index');
         }
