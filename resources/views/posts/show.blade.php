@@ -19,7 +19,7 @@ show page
     <x-tags :tags="$post->tags" />
 
     @if ($post->path)
-        <img width="80%" height="auto" src="{{ asset('storage/' . $post->path) }}" class="rounded d-block mt-3 mb-3" >
+        <img width="100%" height="auto" src="{{ asset('storage/' . $post->path) }}" class="rounded d-block mt-3 mb-3" >
     @endif
     <p style="font-size:115%;text-align: justify;" class="card-text  mb-3">{{$post->post}}</p>
 
@@ -37,18 +37,17 @@ show page
 
 <h5   class="card-title mt-5">Comments</h5>
 
-<form class="mt-3 mb-3" method="POST" action="{{route('comments.store',$post->id)}}" >
+<form class="mt-3 mb-5" method="POST" action="{{route('comments.store',$post->id)}}" >
 @csrf
 
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Comment</label>
-  <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3">{{old('comment')}}</textarea>
-</div>
+  <div class="input-group mb-3">
+    <textarea name="comment" type="text" class="form-control" placeholder="comment" aria-label="Recipient’s username" aria-describedby="button-addon2">
+    {{old('comment')}}
+    </textarea>
+    <button id="addcomment" type="submit" class="btn btn-outline-secondary" >Comment</button>
+  </div>
 
-
-<button id="addcomment" type="submit" class="btn btn-success mt-3">Add Comment</button>
 </form>
-
 
 @foreach ($post->comments as $comment)
 <div class="card mt-3 ">

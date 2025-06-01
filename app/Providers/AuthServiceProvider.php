@@ -8,7 +8,7 @@ use App\Policies\PostPolicy;
 class AuthServiceProvider extends ServiceProvider
 {
     protected $policies = [
-        Post::class => PostPolicy::class
+       // Post::class => PostPolicy::class
     ];
 
     /**
@@ -24,6 +24,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->registerPolicies();
+        //$this->registerPolicies();
     }
 }

@@ -6,7 +6,7 @@ html {
 }
 
 body {
-    background: #fbfbfb
+    background: #fff
 }
 
 a {
@@ -26,7 +26,7 @@ nav a:hover, .card a:hover, .card button:hover, .nav-link:hover {
     width: 100%;
     color: white;
     background: #fff !important;
-    padding: 10px 15%;
+    padding: 10px 17%;
     z-index: 1000;
 }
 
@@ -35,15 +35,13 @@ nav a:hover, .card a:hover, .card button:hover, .nav-link:hover {
 }
 
 .container {
-    width: 70% !important;
+    width: 68% !important;
     margin: 0 auto;
 }
 
 .card {
-    border: 1px solid #efefef;
-    background-color: #fefefe;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
-    border-radius: 8px;
+    border: none;
+    box-shadow: none;
 }
 
 .publisher {

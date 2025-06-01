@@ -4,8 +4,8 @@
     <form method="POST" action="{{ route('login.submit') }}">
     @csrf
       <div class="mb-3">
-        <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" name="email" required>
+        <label for="username" class="form-label">username</label>
+        <input type="text" class="form-control" id="email" name="username" required>
       </div>
 
       <div class="mb-3">

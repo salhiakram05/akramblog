@@ -9,22 +9,23 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function showLoginForm(){
+        //dd(Auth::user());
         return view('auth.login');
     }
     public function login(Request $request){
         
         $request->validate([
-            'email' => ['required', 'string','email'] ,
-            'password' => ['required','min:3'] 
+            'username' => ['required', 'string','min:4'] ,
+            'password' => ['required','min:6'] 
         ]);
-        $email = $request->email;
+        $username = $request->username;
         $password = $request->password;
-        $login_check = Auth::attempt(['email' => $email , 'password' => $password]) ;
+        $login_check = Auth::attempt(['username' => $username , 'password' => $password]) ;
         if ($login_check) {
             return to_route('index');
         }
         else{
-            return back()->withErrors('check your email or password');
+            return back()->withErrors('check your username or password');
         }
 
     }
@@ -36,12 +37,14 @@ class AuthController extends Controller
         $request-> validate([
             'name' => ['required' , 'string','max:255'],
             'email' => ['required' , 'string','email','max:255','unique:users'],
-            'password' => ['required','string', 'confirmed','min:3' ]
+            'username' => ['required' , 'string' , 'min:4','unique:users'] ,
+            'password' => ['required','string', 'confirmed','min:6' ]
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'username' => $request->username,
             'password' => Hash::make($request->password),
             
         ]);

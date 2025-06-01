@@ -6,7 +6,7 @@ index page
 <div class="mt-5">
     <x-alert-errors />
 
-    <div class="text-center"> <a href="{{route('posts.create')}}" class="btn btn-primary">Create post</a> </div>
+    <div class="text-center"> <a href="{{route('posts.create')}}" class="btn btn-primary">New Post</a> </div>
    <table class="table mt-3">
     <thead>
     <tr>
