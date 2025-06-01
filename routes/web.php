@@ -101,8 +101,10 @@ Route::middleware('auth')->controller(EmailVerificationController::class)->name(
 
 
 // testing
+use Illuminate\Http\Request;
+
 Route::get('testing' , function(Request $request){
-     return [
+    return [
         'Laravel sees URL as' => $request->url(),
         'Request scheme' => $request->getScheme(),
         'X-Forwarded-Proto' => $request->header('X-Forwarded-Proto'),
