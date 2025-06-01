@@ -6,6 +6,8 @@ use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\GuestUser;
 use App\Http\Middleware\AuthUser;
 use App\Http\Middleware\TrustProxies;
+use Illuminate\Http\Request;
+
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -19,11 +21,11 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->withMiddleware(function (Middleware $middleware) {
-    $middleware->alias([
-        'guest' => GuestUser::class,
-        'auth' => AuthUser::class
-    ]);
-    $middleware->prepend(TrustProxies::class);
+        $middleware->alias([
+            'guest' => GuestUser::class,
+            'auth' => AuthUser::class
+        ]);
+        $middleware->trustProxies(at: '*');
 
-})
+    })
 ->create();
