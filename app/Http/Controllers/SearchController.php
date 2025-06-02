@@ -17,7 +17,7 @@ class SearchController extends Controller
             $results->orWhere('title', 'like', "%$word%");
         }
 
-        $posts = $results->latest()->get();
+        $posts = $results->with(['user', 'tags', 'comments'])->latest()->get();
         if($posts->isEmpty()){
             return back()->withErrors(['search' => 'there is no posts with this keywords'])->withInput();
         }

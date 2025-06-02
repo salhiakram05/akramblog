@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
+            <div class="navbar-nav align-items-center">
                 @auth
                    <a class="nav-link active" href="{{route('profile.edit')}}">profile <i class="bi bi-person"></i></a>
                    <a class="nav-link active" href="{{route('posts.dashboard')}}">posts <i class="bi bi-stickies"></i></a>

@@ -42,16 +42,15 @@ Route::post('/posts/{post}/like' , [PostsController::class, 'like']) -> name('po
 
 // profilecontroller
 
-Route::middleware([ 'verified']) -> group ( function () {
+Route::middleware(['verified']) -> prefix('profile') -> controller(ProfileController::class) -> name('profile.') -> group( function () {
     
-    Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
 
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/{user}', [ProfileController::class, 'show'])->name('show');
 
-    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/', [ProfileController::class, 'update'])->name('update');
 
-    Route::post('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
-
+    Route::post('/password', [ProfileController::class, 'updatePassword'])->name('password');
 
 
 });

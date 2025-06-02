@@ -1,14 +1,18 @@
-<div class="card" >
+<div class="card mb-2" >
  <div class="card-body">
-  <div class="publisher mb-3">
-  
-   <a href="{{ route('profile.show', $post->user->id) }}">
-   <img  height="35" width="35" src="https://ui-avatars.com/api/?name={{ urlencode($post->user->name) }}&background=random&color=fff" 
-     class="rounded-circle me-2" width="35" height="35" alt="{{ $post->user->name }}">
-    <b> {{ $post->user->name }} </b>
-   </a>
+  <div class="publisher mb-2 d-flex align-items-center">
+  <a href="{{ route('profile.show', $post->user->id) }}" class="d-flex align-items-center text-decoration-none text-dark">
+    <img height="40" width="40"
+         src="https://ui-avatars.com/api/?name={{ urlencode($post->user->name) }}&background=random&color=fff"
+         class="rounded-circle me-2" alt="{{ $post->user->name }}">
 
-  </div>
+    <div class="d-flex flex-column">
+      <h6 class="mb-0">{{ $post->user->name }}</h6>
+      <small class="text-muted">{{ '@' . $post->user->username }}</small>
+    </div>
+  </a>
+</div>
+
     <h4 class="card-title  mb-2"><a href="{{route('posts.show' , $post->id )}}"> {{$post->title}} </a></h4>
     <x-tags :tags="$post->tags" />
     @if ($post->path)
@@ -17,8 +21,8 @@
 
     
    <div class="mb-3" style="color:#5a5a5a;font-size:16px">at {{$post->created_at->format("d-m-Y h:i")}}  </div>
-
-   <x-like :post="$post" />
+   <div class="d-flex align-items-center">
+    <x-like :post="$post" />
 
     <a class="addcomment" href="{{ route('posts.show', $post->id) }}#addcomment" >
     <i class="bi bi-chat"></i>
@@ -28,5 +32,6 @@
        Add Comment
     @endif
     </a>
+   </div>
 </div>
 </div>

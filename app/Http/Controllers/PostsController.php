@@ -15,9 +15,9 @@ class PostsController extends Controller
 
 
     public function index(){
-        $posts = Post::latest()->get();
+        $posts = Post::with(['user', 'tags', 'comments'])->latest()->get();
         $tags = Tag::all();
-        $recentComments = Comment::latest()->take(5)->get();
+        $recentComments = Comment::with('post')->latest()->take(5)->get();
 
         return view('index',['posts' => $posts , 'tags' => $tags , 'recentComments' => $recentComments]);
     }

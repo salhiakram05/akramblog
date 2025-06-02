@@ -7,6 +7,7 @@ index page
     <x-alert-errors />
 
     <div class="text-center"> <a href="{{route('posts.create')}}" class="btn btn-primary">New Post</a> </div>
+   @if ( $posts->isNotEmpty() )
    <table class="table mt-3">
     <thead>
     <tr>
@@ -17,7 +18,7 @@ index page
     </tr>
   </thead>
   <tbody>
-    @forelse ($posts as $post)
+    @foreach ($posts as $post)
     <tr>
       <th scope="row">{{$post->id}}</th>
       <td>{{$post->title}}</td>
@@ -32,14 +33,18 @@ index page
         </form>
       </td>
     </tr>
-    @empty
-    <th> there is no posts yet </th>
-    @endforelse
+    
+    @endforeach
     </tbody>
 
  
     </table>
-
+    
+  @else
+  <div class="alert alert-warning text-center mt-4">
+       you have no posts yet
+    </div>
+  @endif
 </div>
 
 @endsection

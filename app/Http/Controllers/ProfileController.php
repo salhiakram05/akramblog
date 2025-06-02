@@ -11,8 +11,8 @@ class ProfileController extends Controller
 {
 
     public function show(User $user){
-    $posts = $user->posts()->latest()->paginate(6); 
-    return view('profile.show', ['user' => $user, 'posts' => $posts] );
+        $posts = $user->posts()->latest()->paginate(6); 
+        return view('profile.show', ['user' => $user, 'posts' => $posts] );
     }
 
     public function edit(){
