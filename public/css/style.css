@@ -15,7 +15,7 @@ a {
     transition: color 0.5s !important;
 }
 
-nav a:hover, .card a:hover, .card button:hover, .nav-link:hover {
+nav a:hover, .card-body a:hover, .card button:hover, .nav-link:hover {
     color: #0056b3 !important;
 }
 
@@ -26,12 +26,11 @@ nav a:hover, .card a:hover, .card button:hover, .nav-link:hover {
     width: 100%;
     color: white;
     background: #fff !important;
-    padding: 10px 17%;
     z-index: 1000;
 }
 
 #nav a {
-        font-size: 17px;
+    font-size: 18px;
 }
 
 .container {
@@ -53,18 +52,18 @@ button.btn.btn-sm.btn-primary {
     color: #000;
     border: none;
     padding: 0;
-    font-size: 17px;
+    font-size: 18px;
 }
 
 .addcomment {
-    font-size: 17px;
+    font-size: 18px;
 }
 
 form.like {
     display: inline;
     margin-right: 10px;
     position: relative;
-    top: -2px;
+    top: -1px;
 }
 
 .liked {

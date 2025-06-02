@@ -1,4 +1,4 @@
-<div class="card p-3 mb-4" >
+<div class="card" >
  <div class="card-body">
   <div class="publisher mb-3">
    <img  height="35" width="35" src="https://ui-avatars.com/api/?name={{ urlencode($post->user->name) }}&background=random&color=fff" 
@@ -8,7 +8,7 @@
     <h4 class="card-title  mb-2"><a href="{{route('posts.show' , $post->id )}}"> {{$post->title}} </a></h4>
     <x-tags :tags="$post->tags" />
     @if ($post->path)
-        <img width="80%" height="auto" src="{{ asset('storage/' . $post->path) }}" class="rounded d-block mt-3 mb-3" alt="صورة">
+        <img width="100%" height="auto" src="{{ asset('storage/' . $post->path) }}" class="rounded d-block mt-3 mb-3" alt="صورة">
     @endif
 
     

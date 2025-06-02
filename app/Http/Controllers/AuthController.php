@@ -25,7 +25,7 @@ class AuthController extends Controller
             return to_route('index');
         }
         else{
-            return back()->withErrors('check your username or password');
+            return back()->withErrors('check your username or password')->withInput();
         }
 
     }

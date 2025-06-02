@@ -7,7 +7,7 @@ show page
 <x-alert-errors />
 
 
-<div class="card mt-5 p-3 ">
+<div class="card mt-5  ">
 
   <div class="card-body">
   <div class="publisher mb-2">
@@ -37,30 +37,25 @@ show page
 
 <h5   class="card-title mt-5">Comments</h5>
 
-<form class="mt-3 mb-5" method="POST" action="{{route('comments.store',$post->id)}}" >
-@csrf
-
-  <div class="input-group mb-3">
-    <textarea name="comment" type="text" class="form-control" placeholder="comment" aria-label="Recipient’s username" aria-describedby="button-addon2">
-    {{old('comment')}}
-    </textarea>
-    <button id="addcomment" type="submit" class="btn btn-outline-secondary" >Comment</button>
+<form method="POST" action="{{ route('comments.store', $post->id) }}" class="mt-4 mb-3">
+  @csrf
+  <div class="input-group">
+    <textarea id="addcomment" name="comment" class="form-control" placeholder="Write a comment..." rows="2" style="resize: none;">{{ old('comment') }}</textarea>
+    <button class="btn btn-outline-primary" type="submit">Comment</button>
   </div>
-
 </form>
 
+
+
 @foreach ($post->comments as $comment)
-<div class="card mt-3 ">
-  <div class="card-body">
-    <h6 class="card-subtitle mb-2 text-body-secondary">{{$comment->commenter}}</h6>
-    <p class="card-text">{{$comment->comment}}</p>
-
-    <h6 class="card-subtitle mb-2 text-body-secondary">{{$comment->created_at}}</h6>
-
-
+  <div class="card mb-3 shadow-sm">
+    <div class="card-body">
+      <h6 class="card-title mb-1 fw-bold">{{ $comment->commenter }}</h6>
+      <p class="card-text mb-2">{{ $comment->comment }}</p>
+      <small class="text-muted">{{ $comment->created_at->format('Y-m-d H:i') }}</small>
+    </div>
   </div>
-
-</div>
 @endforeach
+
 @endsection
 

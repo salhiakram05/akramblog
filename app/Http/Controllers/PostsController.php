@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Like;
 use App\Models\User;
 use App\Models\Tag;
+use App\Models\Comment;
 
 
 class PostsController extends Controller
@@ -15,7 +16,10 @@ class PostsController extends Controller
 
     public function index(){
         $posts = Post::latest()->get();
-        return view('index',['posts' => $posts]);
+        $tags = Tag::all();
+        $recentComments = Comment::latest()->take(5)->get();
+
+        return view('index',['posts' => $posts , 'tags' => $tags , 'recentComments' => $recentComments]);
     }
 
     public function dashboard(){

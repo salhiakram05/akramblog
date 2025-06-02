@@ -5,7 +5,7 @@
     @csrf
       <div class="mb-3">
         <label for="username" class="form-label">username</label>
-        <input type="text" class="form-control" id="email" name="username" required>
+        <input type="text" class="form-control" id="email" name="username" value="{{old('username')}}" required>
       </div>
 
       <div class="mb-3">

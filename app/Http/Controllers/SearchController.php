@@ -19,7 +19,7 @@ class SearchController extends Controller
 
         $posts = $results->latest()->get();
         if($posts->isEmpty()){
-            return back()->withErrors(['search' => 'there is no posts with this keywords']);
+            return back()->withErrors(['search' => 'there is no posts with this keywords'])->withInput();
         }
         
         return view('posts.search' ,['posts' => $posts]);
