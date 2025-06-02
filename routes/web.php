@@ -42,11 +42,10 @@ Route::post('/posts/{post}/like' , [PostsController::class, 'like']) -> name('po
 
 // profilecontroller
 
+
 Route::middleware(['verified']) -> prefix('profile') -> controller(ProfileController::class) -> name('profile.') -> group( function () {
     
     Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
-
-    Route::get('/{user}', [ProfileController::class, 'show'])->name('show');
 
     Route::post('/', [ProfileController::class, 'update'])->name('update');
 
@@ -55,6 +54,7 @@ Route::middleware(['verified']) -> prefix('profile') -> controller(ProfileContro
 
 });
 
+Route::get('profile/{user}', [ProfileController::class, 'show'])->name('profile.show');
 
 
 
