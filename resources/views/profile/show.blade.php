@@ -1,62 +1,57 @@
-@extends('layouts.app') 
+@extends('layouts.app')
+
+@section('title', $user->name)
 
 @section('content')
-<div class=" mt-5">
-    <h2 class="mb-4">Profile</h2>
-    {{-- Error message --}}
+<div class="container py-6">
 
-    <x-alert-errors />
+    <div class="mb-4 p-4 bg-light rounded shadow-sm">
 
-    {{-- Success message --}}
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
+    <div class="d-flex align-items-center mb-3">
+        <img 
+            src="https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&background=random&color=fff" 
+            height="60" width="60" 
+            class="rounded-circle me-3 border border-2" 
+            alt="{{ $user->name }}"
+        >
+        <div>
+            <h4 class="mb-0">{{ $user->name }}</h4>
+            <small class="text-muted">{{ '@' . $user->username }}</small>
         </div>
+    </div>
+
+    <ul class="list-unstyled mb-0">
+       
+        <li>
+            <i class="bi bi-envelope-fill me-2 text-primary"></i>
+            <strong>Email:</strong> {{ $user->email }}
+        </li>
+    </ul>
+
+</div>
+
+
+    <h4 class="mb-3">📝 Articles by {{ $user->name }}</h4>
+
+    @if($posts->count())
+        <div class="d-flex flex-column gap-3">
+            @foreach($posts as $post)
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $post->title }}</h5>
+                        <p class="card-text">{{ Str::limit($post->body, 150) }}</p>
+                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-primary rmlink">Read more</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        <div class="mt-4">
+            {{ $posts->links() }}
+        </div>
+    @else
+        <p>No articles yet.</p>
     @endif
 
-    
-
-    {{-- Update basic info --}}
-    <form method="POST" action="{{ route('profile.update') }}">
-        @csrf
-        <div class="mb-3">
-            <label class="form-label">Name</label>
-            <input type="text" name="name" class="form-control" value="{{ old('name', $user->name) }}" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Username</label>
-            <input type="text" name="username" class="form-control" value="{{ old('username', $user->username) }}" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Email (not editable)</label>
-            <input type="email" class="form-control" value="{{ $user->email }}" disabled>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Update Info</button>
-    </form>
-
-    <hr class="my-5">
-
-    {{-- Change password --}}
-    <h4>Change Password</h4>
-    <form class="mb-5" method="POST" action="{{ route('profile.password') }}">
-        @csrf
-        <div class="mb-3">
-            <label class="form-label">Current Password</label>
-            <input type="password" name="current_password" class="form-control" required>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">New Password</label>
-            <input type="password" name="new_password" class="form-control" required>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Confirm New Password</label>
-            <input type="password" name="new_password_confirmation" class="form-control" required>
-        </div>
-
-        <button type="submit" class="btn btn-warning">Change Password</button>
-    </form>
 </div>
 @endsection

@@ -1,9 +1,13 @@
 <div class="card" >
  <div class="card-body">
   <div class="publisher mb-3">
+  
+   <a href="{{ route('profile.show', $post->user->id) }}">
    <img  height="35" width="35" src="https://ui-avatars.com/api/?name={{ urlencode($post->user->name) }}&background=random&color=fff" 
      class="rounded-circle me-2" width="35" height="35" alt="{{ $post->user->name }}">
-   <b>{{ $post->user->name }}</b>
+    <b> {{ $post->user->name }} </b>
+   </a>
+
   </div>
     <h4 class="card-title  mb-2"><a href="{{route('posts.show' , $post->id )}}"> {{$post->title}} </a></h4>
     <x-tags :tags="$post->tags" />

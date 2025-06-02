@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 @auth
-                   <a class="nav-link active" href="{{route('profile.show')}}">profile <i class="bi bi-person"></i></a>
+                   <a class="nav-link active" href="{{route('profile.edit')}}">profile <i class="bi bi-person"></i></a>
                    <a class="nav-link active" href="{{route('posts.dashboard')}}">posts <i class="bi bi-stickies"></i></a>
 
                     <form method="POST" action="{{ route('logout') }}">

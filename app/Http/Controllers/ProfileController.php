@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
-
+use App\Models\User;
 
 class ProfileController extends Controller
 {
-    public function show(){
+
+    public function show(User $user){
+    $posts = $user->posts()->latest()->paginate(6); 
+    return view('profile.show', ['user' => $user, 'posts' => $posts] );
+    }
+
+    public function edit(){
         $user = auth()->user();
-        return view('profile.show', ['user' => $user]);
+        return view('profile.edit', ['user' => $user]);
     }
 
     public function update(Request $request){
