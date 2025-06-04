@@ -33,10 +33,6 @@ nav a:hover, .card-body a:hover, .card button:hover, .nav-link:hover {
     font-size: 18px;
 }
 
-.container {
-    width: 68% !important;
-    margin: 0 auto;
-}
 
 .card {
     border: none;
@@ -77,7 +73,7 @@ form.like {
 }
 
 
-.card:hover {
+.card img:hover {
     transform: scale(1.01);
     transition: 0.4s ease-in-out;
 }
