@@ -49,17 +49,17 @@ class PostsController extends Controller
         $title = $request->title;
         $description = $request->post;
         $user_id = auth()->id();
-        $image = $request->file('image');
-        $customName =  time()  . '.' . $image->getClientOriginalExtension();
+        $image = $request->image;
+        $customName =  time()  . '.' . $image->extension();
         
-        $image->storeAs('images', $customName,'public');
+        $path = $image->storeAs('images', $customName,'public');
 
         // make this data into our database
         $post = Post::create([
            'title' => $title,
            'post' =>  $description,
            'user_id' => $user_id,
-           'path' => 'images/' . $customName
+           'path' => $path
         ]);
 
         // tags processing
